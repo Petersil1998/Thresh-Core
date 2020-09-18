@@ -4,7 +4,7 @@ namespace Thresh_Core\Utils;
 
 /**
  * This class is used to make the API requests
- * @package Thresh\Helper
+ * @package Thresh_Core\Utils
  */
 class HTTPClient
 {

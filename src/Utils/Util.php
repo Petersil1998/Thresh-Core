@@ -9,6 +9,10 @@ use Thresh_Core\Objects\Runes\RuneStat;
 use Thresh_Core\Objects\Runes\RuneStyle;
 use Thresh_Core\Objects\Sprite;
 
+/**
+ * This class provides some utility Methods
+ * @package Thresh_Core\Utils
+ */
 class Util
 {
     /**

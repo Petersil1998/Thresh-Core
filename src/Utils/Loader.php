@@ -28,7 +28,7 @@ define('BASE_PATH', dirname(dirname(dirname(__FILE__))));
 
 /**
  * This class is used to initialize the project
- * @package Thresh\Helper
+ * @package Thresh_Core\Utils
  */
 class Loader
 {

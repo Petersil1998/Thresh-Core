@@ -4,7 +4,7 @@ namespace Thresh_Core\Utils;
 
 /**
  * This class represents a File Handle
- * @package Thresh\Helper
+ * @package Thresh_Core\Utils
  */
 class FileHandler
 {
