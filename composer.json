@@ -9,7 +9,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "Thresh-Core\\": "src/"
+            "Thresh_Core\\": "src/"
         }
+    },
+    "require": {
+        "php": "7.3"
     }
 }
