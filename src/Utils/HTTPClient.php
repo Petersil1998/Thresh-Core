@@ -30,12 +30,22 @@ class HTTPClient
     {
         $this->_curl = curl_init();
         curl_setopt($this->_curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($this->_curl, CURLOPT_HTTPGET, 1);
     }
 
     public function __destruct()
     {
         curl_close($this->_curl);
+    }
+
+    /**
+     * @param string $url
+     * @param string $game
+     * @param array $extraData
+     * @return string
+     */
+    public function get(string $url, string $game, array $extraData){
+        curl_setopt($this->_curl, CURLOPT_HTTPGET, 1);
+        return $this->request($url, $game, $extraData);
     }
 
     /**
