@@ -1,6 +1,6 @@
 <?php
 
-namespace Thresh\Helper;
+namespace Thresh_Core\Utils;
 
 /**
  * This class represents a File Handle

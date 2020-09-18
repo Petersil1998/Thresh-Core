@@ -1,6 +1,6 @@
 <?php
 
-namespace Thresh\Helper;
+namespace Thresh_Core\Utils;
 
 use RuntimeException;
 use Thresh_Core\Collections\Champions;

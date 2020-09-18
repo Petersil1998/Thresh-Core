@@ -1,5 +1,7 @@
 <?php
 
+namespace Thresh_Core\Utils;
+
 /**
  * This class is used to make the API requests
  * @package Thresh\Helper
