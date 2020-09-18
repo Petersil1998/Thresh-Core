@@ -44,8 +44,16 @@ class Util
     }
 
     /**
+     * @param int $profileIconId
+     * @return string
+     */
+    public static function getProfileIconURL(int $profileIconId){
+        return Constants::DDRAGON_BASE_PATH.'cdn/'.Constants::getDataDragonVersion().'/img/profileicon/'.$profileIconId.'.png';
+    }
+
+    /**
      * This Method returns the URL for the Champion Icon
-     * @param $champion Champion
+     * @param Champion $champion
      * @return string
      */
     public static function getChampionIconURL(Champion $champion){
