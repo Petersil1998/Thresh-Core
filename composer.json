@@ -1,0 +1,15 @@
+{
+    "name": "petersil98/thresh",
+    "description": "This is the core module for the Thresh Libraries",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Peter Silbernagl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Thresh-Core\\": "src/"
+        }
+    }
+}
