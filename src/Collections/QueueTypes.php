@@ -19,10 +19,10 @@ class QueueTypes
     /**
      * This Method returns the **QueueType** object with the specified ID.
      * If no QueueType with the specified ID was found returns **false**
-     * @param $id int QueueType ID
+     * @param int $id QueueType ID
      * @return false|QueueType
      */
-    public static function getQueueType($id){
+    public static function getQueueType(int $id){
         foreach (self::$queueTypes as $queueType){
             if($queueType->getId() == $id){
                 return $queueType;

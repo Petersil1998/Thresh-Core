@@ -19,10 +19,10 @@ class RuneStyles
     /**
      * This Method returns the **RuneStyle** object with the specified ID.
      * If no RuneStyle with the specified ID was found returns **false**
-     * @param $id int RuneStyle ID
+     * @param int $id RuneStyle ID
      * @return false|RuneStyle
      */
-    public static function getRuneStyle($id){
+    public static function getRuneStyle(int $id){
         foreach (self::$runeStyles as $runeStyle){
             if($runeStyle->getId() == $id){
                 return $runeStyle;

@@ -19,10 +19,10 @@ class SummonerSpells
     /**
      * This Method returns the **SummonerSpell** object with the specified ID.
      * If no Summoner Spell with the specified ID was found returns **false**
-     * @param $id int Summoner Spell ID
+     * @param int $id Summoner Spell ID
      * @return false|SummonerSpell
      */
-    public static function getSummonerSpell($id){
+    public static function getSummonerSpell(int $id){
         foreach (self::$summonerSpells as $summonerSpell){
             if($summonerSpell->getId() == $id){
                 return $summonerSpell;

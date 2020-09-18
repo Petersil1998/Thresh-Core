@@ -19,10 +19,10 @@ class RuneStats
     /**
      * This Method returns the **RuneStat** object with the specified ID.
      * If no RuneStat with the specified ID was found returns **false**
-     * @param $id int RuneStat ID
+     * @param int $id RuneStat ID
      * @return false|RuneStat
      */
-    public static function getRuneStat($id){
+    public static function getRuneStat(int $id){
         foreach (self::$runeStats as $runeStat){
             if($runeStat->getId() == $id){
                 return $runeStat;

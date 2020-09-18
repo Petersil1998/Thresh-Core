@@ -27,9 +27,9 @@ class Constants
 
     /**
      * Used to set the Data Dragon Version (**Do not use it!**)
-     * @param $dataDragonVersion
+     * @param string $dataDragonVersion
      */
-    public static function setDataDragonVersion($dataDragonVersion){
+    public static function setDataDragonVersion(string $dataDragonVersion){
         self::$ddragonVersion = $dataDragonVersion;
     }
 }

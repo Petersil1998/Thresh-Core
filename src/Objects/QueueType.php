@@ -35,7 +35,7 @@ class QueueType
      * @param string|null $description
      * @param string|null $notes
      */
-    public function __construct($id, $map, $description, $notes)
+    public function __construct(int $id, string $map, ?string $description, ?string $notes)
     {
         $this->id = $id;
         $this->map = $map;

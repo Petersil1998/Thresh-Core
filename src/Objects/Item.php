@@ -3,7 +3,9 @@
 namespace Thresh_Core\Objects;
 
 use stdClass;
-use Thresh\Collections\Champions;
+use Thresh_Core\Collections\Champions;
+use Thresh_Core\Collections\Items;
+use Thresh_Core\Collections\Maps;
 use Thresh_Core\Objects\Champions\Champion;
 
 /**
@@ -215,13 +217,13 @@ class Item
     }
 
     /**
-     * @param $object stdClass The object that holds the property to be set
-     * @param $property string The properties name (has to be the same in $this and in the object)
-     * @param $alternativeName string The alternative Property name if it differs from the objects property name
-     * @param $convertPropertyToArray bool whether or not the property should be converted to an associative array
+     * @param stdClass $object The object that holds the property to be set
+     * @param string $property The properties name (has to be the same in $this and in the object)
+     * @param string $alternativeName The alternative Property name if it differs from the objects property name
+     * @param bool $convertPropertyToArray whether or not the property should be converted to an associative array
      * (only works if the property is instance of stdClass)
      */
-    private function setProperty($object, $property, $alternativeName = '', $convertPropertyToArray = false){
+    private function setProperty(stdClass $object, string $property, $alternativeName = '', $convertPropertyToArray = false){
         $thisFieldName = $property;
         if(!empty($alternativeName)){
             $thisFieldName = $alternativeName;

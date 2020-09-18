@@ -19,7 +19,7 @@ class Items
     /**
      * This Method returns the **Item** object with the specified ID.
      * If no Item with the specified ID was found returns **false**
-     * @param $id int Item ID
+     * @param int $id Item ID
      * @return false|Item
      */
     public static function getItem($id){

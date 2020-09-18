@@ -19,10 +19,10 @@ class Runes
     /**
      * This Method returns the **Rune** object with the specified ID.
      * If no Rune with the specified ID was found returns **false**
-     * @param $id int Rune ID
+     * @param int $id Rune ID
      * @return false|Rune
      */
-    public static function getRune($id){
+    public static function getRune(int $id){
         foreach (self::$runes as $rune){
             if($rune->getId() == $id){
                 return $rune;

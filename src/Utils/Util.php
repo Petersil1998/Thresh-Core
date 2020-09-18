@@ -17,7 +17,7 @@ class Util
 {
     /**
      * This Method returns the Champion Name as it is used in the Data Dragon
-     * @param $championName string
+     * @param string $championName
      * @return string
      */
     public static function getChampWithoutSpecials(string $championName)
@@ -62,7 +62,7 @@ class Util
 
     /**
      * This Method returns the URL for the Rune Icon
-     * @param $rune Rune|RuneStat|RuneStyle
+     * @param Rune|RuneStat|RuneStyle $rune
      * @return string
      */
     public static function getRuneIconURL($rune){

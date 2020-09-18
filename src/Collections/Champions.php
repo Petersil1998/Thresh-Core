@@ -19,10 +19,10 @@ class Champions
     /**
      * This Method returns the **Champion** object with the specified ID.
      * If no Champion with the specified ID was found returns **false**
-     * @param $id int Champion ID
+     * @param int $id Champion ID
      * @return false|Champion
      */
-    public static function getChampion($id){
+    public static function getChampion(int $id){
         foreach (self::$champions as $champion){
             if($champion->getId() == $id){
                 return $champion;
@@ -34,10 +34,10 @@ class Champions
     /**
      * This Method returns the **Champion** object with the specified Name.
      * If no Champion with the specified Name was found returns **false**
-     * @param $name string Champion Name
+     * @param string $name Champion Name
      * @return false|Champion
      */
-    public static function getChampionByName($name){
+    public static function getChampionByName(string $name){
         foreach (self::$champions as $champion){
             if(strtolower($champion->getName()) == strtolower($name)){
                 return $champion;

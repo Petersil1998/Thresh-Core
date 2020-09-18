@@ -19,10 +19,10 @@ class Maps
     /**
      * This Method returns the **Map** object with the specified ID.
      * If no Map with the specified ID was found returns **false**
-     * @param $id int Map ID
+     * @param int $id Map ID
      * @return false|Map
      */
-    public static function getMap($id){
+    public static function getMap(int $id){
         foreach (self::$maps as $map){
             if($map->getId() == $id){
                 return $map;

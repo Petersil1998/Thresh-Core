@@ -34,9 +34,9 @@ class FileHandler
 
     /**
      * Used to write text to a file
-     * @param $text
+     * @param string $text
      */
-    public function write($text){
+    public function write(string $text){
         if($this->mode === 'w' && $this->fp !== null){
             fwrite($this->fp, $text);
         }

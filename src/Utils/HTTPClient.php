@@ -40,12 +40,12 @@ class HTTPClient
     /**
      * @param string $url
      * @param string $game
-     * @param array $extraData
+     * @param array $queryParams
      * @return string
      */
-    public function get(string $url, string $game, array $extraData){
+    public function get(string $url, string $game, array $queryParams){
         curl_setopt($this->_curl, CURLOPT_HTTPGET, 1);
-        return $this->request($url, $game, $extraData);
+        return $this->request($url, $game, $queryParams);
     }
 
     /**

@@ -27,13 +27,13 @@ class Skin
      * Skin constructor.
      * @param int $id
      * @param string $name
-     * @param bool $chromas
+     * @param bool $hasChromas
      */
-    public function __construct(int $id, string $name, bool $chromas)
+    public function __construct(int $id, string $name, bool $hasChromas)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->chromas = $chromas;
+        $this->chromas = $hasChromas;
     }
 
     /**
