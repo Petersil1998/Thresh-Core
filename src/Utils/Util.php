@@ -44,6 +44,7 @@ class Util
     }
 
     /**
+     * This Method returns the URL for the Summoner Profile Icon
      * @param int $profileIconId
      * @return string
      */
