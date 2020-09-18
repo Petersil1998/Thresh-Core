@@ -1,5 +1,5 @@
 {
-    "name": "petersil98/thresh",
+    "name": "petersil98/thresh-core",
     "description": "This is the core module for the Thresh Libraries",
     "type": "library",
     "authors": [
