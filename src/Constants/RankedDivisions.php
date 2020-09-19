@@ -14,7 +14,7 @@ class RankedDivisions
     /**
      * @return array
      */
-    public static function getPlatforms(){
+    public static function getDivisions(){
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

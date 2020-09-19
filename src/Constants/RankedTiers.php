@@ -16,7 +16,7 @@ class RankedTiers
     /**
      * @return array
      */
-    public static function getPlatforms(){
+    public static function getTiers(){
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }
