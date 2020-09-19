@@ -39,38 +39,21 @@ class HTTPClient
 
     /**
      * @param string $url
-     * @param string $game
      * @param array $queryParams
      * @return string
      */
-    public function get(string $url, string $game, array $queryParams){
+    public function get(string $url, array $queryParams){
         curl_setopt($this->_curl, CURLOPT_HTTPGET, 1);
-        return $this->request($url, $game, $queryParams);
+        return $this->request($url.'?'.$this->buildParameters($queryParams));
     }
 
     /**
      * @param $url string
-     * @param $game string
-     * @param $extraData array
      * @return string
      */
-    private function request(string $url, string $game, array $extraData){
-        $basePath = '';
-        switch ($game){
-            case 'lol':
-                $basePath = preg_replace('~{platform}~',Config::getPlatform(),Constants::LEAGUE_API_BASE_PATH);
-                break;
-            case 'tft':
-                $basePath = preg_replace('~{platform}~',Config::getPlatform(),Constants::TFT_API_BASE_PATH);
-                break;
-            case 'riot':
-                $basePath = preg_replace('~{region}~',Config::getRegion(),Constants::RIOT_API_BASE_PATH);
-                break;
-        }
-        $api_key = EncryptionUtils::decrypt(Config::getApiKey());
-        curl_setopt($this->_curl, CURLOPT_URL, $basePath . $url .
-            '?api_key=' . $api_key.'&'.$this->buildParameters($extraData));
-        curl_setopt($this->_curl, CURLOPT_HEADER  , true);
+    private function request(string $url){
+        curl_setopt($this->_curl, CURLOPT_URL, $url);
+        curl_setopt($this->_curl, CURLOPT_HEADER, true);
 
         $response = curl_exec($this->_curl);
 
@@ -86,13 +69,13 @@ class HTTPClient
                     $httpStatusCode,
                     PHP_EOL,
                     $body));
+            return '';
         }
-        return '';
     }
 
     /**
      * @param array $array
-     * @param bool $qs
+     * @param array|false $qs
      * @return string
      */
     private function buildParameters(array $array, $qs = false) {
