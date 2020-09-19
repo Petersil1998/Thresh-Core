@@ -2,6 +2,8 @@
 
 namespace Thresh_Core\Constants;
 
+use ReflectionClass;
+
 class RankedTiers
 {
     const IRON = 'IRON';
@@ -10,4 +12,12 @@ class RankedTiers
     const GOLD = 'GOLD';
     const PLATINUM = 'PLATINUM';
     const DIAMOND = 'DIAMOND';
+
+    /**
+     * @return array
+     */
+    public static function getPlatforms(){
+        $reflection = new ReflectionClass(__CLASS__);
+        return $reflection->getConstants();
+    }
 }

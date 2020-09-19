@@ -2,6 +2,8 @@
 
 namespace Thresh_Core\Constants;
 
+use ReflectionClass;
+
 /**
  * This class contains all possible Platforms (used for API request)
  * @package Thresh\Constants
@@ -19,4 +21,12 @@ class Platforms
     const NA = 'na1';
     const LAN = 'la1';
     const LAS = 'la2';
+
+    /**
+     * @return array
+     */
+    public static function getPlatforms(){
+        $reflection = new ReflectionClass(__CLASS__);
+        return $reflection->getConstants();
+    }
 }
