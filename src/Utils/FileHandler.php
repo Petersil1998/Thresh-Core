@@ -46,7 +46,8 @@ class FileHandler
      * Used to get the Size of a File
      * @return int
      */
-    public function getFileSize(){
+    public function getFileSize(): int
+    {
         return filesize($this->path);
     }
 

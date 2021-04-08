@@ -12,7 +12,8 @@ class RankedQueues
     /**
      * @return array
      */
-    public static function getQueues(){
+    public static function getQueues(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

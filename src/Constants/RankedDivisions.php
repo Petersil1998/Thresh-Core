@@ -14,7 +14,8 @@ class RankedDivisions
     /**
      * @return array
      */
-    public static function getDivisions(){
+    public static function getDivisions(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

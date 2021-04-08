@@ -17,7 +17,8 @@ class Regions
     /**
      * @return array
      */
-    public static function getRegions(){
+    public static function getRegions(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

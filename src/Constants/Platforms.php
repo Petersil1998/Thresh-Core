@@ -25,7 +25,8 @@ class Platforms
     /**
      * @return array
      */
-    public static function getPlatforms(){
+    public static function getPlatforms(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

@@ -299,7 +299,8 @@ class Loader
         SummonerSpells::setSummonerSpells($summonerSpells);
     }
 
-    private static function createChampionsJSON(){
+    private static function createChampionsJSON(): string
+    {
         $json = '[';
         $champions = json_decode(file_get_contents(Constants::DDRAGON_BASE_PATH.'cdn/'.Constants::getDataDragonVersion().'/data/en_US/championFull.json'));
         foreach ($champions->data as $key => $value) {
@@ -396,7 +397,8 @@ class Loader
      * @param int $id
      * @return int
      */
-    private static function getRuneStyleIDByRuneID(int $id){
+    private static function getRuneStyleIDByRuneID(int $id): int
+    {
         $fileHandler = new FileHandler(self::RUNES_AND_RUNE_STYLES_FILE_PATH, 'r');
         $json = json_decode($fileHandler->read());
         $fileHandler->close();

@@ -16,7 +16,8 @@ class RankedTiers
     /**
      * @return array
      */
-    public static function getTiers(){
+    public static function getTiers(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

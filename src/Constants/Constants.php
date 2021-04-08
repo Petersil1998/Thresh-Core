@@ -21,7 +21,8 @@ class Constants
      * This Method returns the current Data Dragon (DDragon) Version
      * @return string
      */
-    public static function getDataDragonVersion(){
+    public static function getDataDragonVersion(): string
+    {
         return self::$ddragonVersion;
     }
 

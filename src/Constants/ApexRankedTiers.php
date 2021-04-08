@@ -13,7 +13,8 @@ class ApexRankedTiers
     /**
      * @return array
      */
-    public static function getApexTiers(){
+    public static function getApexTiers(): array
+    {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->getConstants();
     }

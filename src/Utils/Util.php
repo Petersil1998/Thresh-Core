@@ -20,7 +20,7 @@ class Util
      * @param string $championName
      * @return string
      */
-    public static function getChampWithoutSpecials(string $championName)
+    public static function getChampWithoutSpecials(string $championName): string
     {
         if ($championName == 'Wukong') {
             return 'MonkeyKing';
@@ -39,8 +39,7 @@ class Util
         }
         $ret = str_replace('\'', '', $championName);
         $ret = str_replace(' ', '', $ret);
-        $ret = str_replace('.', '', $ret);
-        return $ret;
+        return str_replace('.', '', $ret);
     }
 
     /**
@@ -48,7 +47,8 @@ class Util
      * @param int $profileIconId
      * @return string
      */
-    public static function getProfileIconURL(int $profileIconId){
+    public static function getProfileIconURL(int $profileIconId): string
+    {
         return Constants::DDRAGON_BASE_PATH.'cdn/'.Constants::getDataDragonVersion().'/img/profileicon/'.$profileIconId.'.png';
     }
 
@@ -57,7 +57,8 @@ class Util
      * @param Champion $champion
      * @return string
      */
-    public static function getChampionIconURL(Champion $champion){
+    public static function getChampionIconURL(Champion $champion): string
+    {
         return Constants::DDRAGON_BASE_PATH . 'cdn/' . Constants::getDataDragonVersion() . '/img/champion/' . Util::getChampWithoutSpecials($champion->getName()) . '.png';
     }
 
@@ -66,7 +67,8 @@ class Util
      * @param Rune|RuneStat|RuneStyle $rune
      * @return string
      */
-    public static function getRuneIconURL($rune){
+    public static function getRuneIconURL($rune): string
+    {
         return Constants::DDRAGON_BASE_PATH.'cdn/img/'.$rune->getIconPath();
     }
 
@@ -89,7 +91,8 @@ class Util
      * @param Sprite $sprite
      * @return string base64 encoded image as string
      */
-    public static function getBase64EncodedImageFromSprite(Sprite $sprite){
+    public static function getBase64EncodedImageFromSprite(Sprite $sprite): string
+    {
         ob_start();
         imagepng(Util::getPNGFromSprite($sprite));
         $image = ob_get_contents();
