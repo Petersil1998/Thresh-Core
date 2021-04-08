@@ -19,7 +19,8 @@ class HTTPClient
      * Returns an instance of HTTPClient
      * @return HTTPClient
      */
-    public static function getInstance(){
+    public static function getInstance(): HTTPClient
+    {
         if(self::$httpClient === null){
             self::$httpClient = new HTTPClient();
         }
@@ -40,18 +41,20 @@ class HTTPClient
     /**
      * @param string $url
      * @param array $queryParams
-     * @return string
+     * @return Response
      */
-    public function get(string $url, array $queryParams){
+    public function get(string $url, array $queryParams): Response
+    {
         curl_setopt($this->_curl, CURLOPT_HTTPGET, 1);
         return $this->request($url.'?'.$this->buildParameters($queryParams));
     }
 
     /**
      * @param $url string
-     * @return string
+     * @return Response
      */
-    private function request(string $url){
+    private function request(string $url): Response
+    {
         curl_setopt($this->_curl, CURLOPT_URL, $url);
         curl_setopt($this->_curl, CURLOPT_HEADER, true);
 
@@ -60,17 +63,9 @@ class HTTPClient
         $httpStatusCode = curl_getinfo($this->_curl, CURLINFO_HTTP_CODE);
         $header_size = curl_getinfo($this->_curl, CURLINFO_HEADER_SIZE);
         $body = substr($response, $header_size);
+        $header = substr($response, 0, $header_size);
 
-        if($httpStatusCode == 200){
-            return $body;
-        } else {
-            syslog(LOG_ALERT,
-                sprintf('API Request returned a statusCode other than 200! Status Code: %s%sBody: %s',
-                    $httpStatusCode,
-                    PHP_EOL,
-                    $body));
-            return '';
-        }
+        return new Response($body, $httpStatusCode, $this->parseHeaders($header));
     }
 
     /**
@@ -78,7 +73,8 @@ class HTTPClient
      * @param array|false $qs
      * @return string
      */
-    private function buildParameters(array $array, $qs = false) {
+    private function buildParameters(array $array, $qs = false): string
+    {
         $parts = array();
         if ($qs) {
             $parts[] = $qs;
@@ -93,5 +89,23 @@ class HTTPClient
             }
         }
         return join('&', $parts);
+    }
+
+    /**
+     * @param string $header
+     * @return array
+     */
+    private function parseHeaders(string $header): array
+    {
+        $realHeader = array();
+        $headers = explode(PHP_EOL, $header);
+        array_shift($headers);
+        foreach ($headers as $header) {
+            $parts = explode(":", $header, 2);
+            if(count($parts) == 2) {
+                $realHeader[$parts[0]] = trim($parts[1]);
+            }
+        }
+        return $realHeader;
     }
 }
