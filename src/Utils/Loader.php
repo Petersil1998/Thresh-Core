@@ -303,7 +303,7 @@ class Loader
     {
         $json = '[';
         $champions = json_decode(file_get_contents(Constants::DDRAGON_BASE_PATH.'cdn/'.Constants::getDataDragonVersion().'/data/en_US/championFull.json'));
-        foreach ($champions->data as $key => $value) {
+        foreach ($champions->data as $value) {
             $json .= '{"id":"'.$value->key.'",'.
                 '"name":"'.$value->name.'",'.
                 '"title":"'.$value->title.'",'.
@@ -330,7 +330,7 @@ class Loader
             }
             $json = trim($json, ',');
             $json .= '],'.
-                '"lore":"'.htmlspecialchars(json_encode($value->lore), ENT_QUOTES).'",'.
+                '"lore":'.htmlspecialchars(json_encode($value->lore), ENT_QUOTES).','.
                 '"allyTips":[';
             foreach ($value->allytips as $allyTip){
                 $json .= '"'.$allyTip.'",';
