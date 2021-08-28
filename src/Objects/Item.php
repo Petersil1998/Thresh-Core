@@ -214,7 +214,7 @@ class Item
         }
         $this->into = $items;
 
-        if(!empty($this->into)){
+        if(!empty($this->specialRecipe)){
             $this->specialRecipe = Items::getItem($this->specialRecipe);
         }
     }
