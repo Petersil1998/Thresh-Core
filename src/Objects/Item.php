@@ -14,6 +14,8 @@ use Thresh_Core\Objects\Champions\Champion;
  */
 class Item
 {
+    public static $DEFAULT_ITEM;
+
     /**
      * @var int
      */
@@ -143,55 +145,58 @@ class Item
      * Item constructor.
      * @param int $id
      * @param stdClass $data
+     * @param bool $isDummy
      */
-    public function __construct(int $id, stdClass $data)
+    public function __construct(int $id, stdClass $data, bool $isDummy = false)
     {
         $this->id = $id;
-        $this->setProperty($data, 'name');
-        if(property_exists($data, 'gold')) {
-            $this->setProperty($data->gold, 'base', 'price');
-            $this->setProperty($data->gold, 'total', 'totalPrice');
-            $this->setProperty($data->gold, 'sell', 'sellPrice');
-            $this->setProperty($data->gold, 'purchasable');
-        }
-        $this->setProperty($data, 'description');
-        $this->setProperty($data, 'plaintext');
-        $this->setProperty($data, 'consumed');
-        $this->setProperty($data, 'stacks', 'maxStackSize');
-        $this->setProperty($data, 'depth');
-        $this->setProperty($data, 'consumeOnFull');
-        $this->setProperty($data, 'from');
-        $this->setProperty($data, 'into');
-        $this->setProperty($data, 'specialRecipe');
-        $this->setProperty($data, 'inStore');
-        $this->setProperty($data, 'hideFromAll');
-        $this->setProperty($data, 'stats');
-        $this->setProperty($data, 'tags');
-        $this->setProperty($data, 'effect');
+        if(!$isDummy) {
+            $this->setProperty($data, 'name');
+            if (property_exists($data, 'gold')) {
+                $this->setProperty($data->gold, 'base', 'price');
+                $this->setProperty($data->gold, 'total', 'totalPrice');
+                $this->setProperty($data->gold, 'sell', 'sellPrice');
+                $this->setProperty($data->gold, 'purchasable');
+            }
+            $this->setProperty($data, 'description');
+            $this->setProperty($data, 'plaintext');
+            $this->setProperty($data, 'consumed');
+            $this->setProperty($data, 'stacks', 'maxStackSize');
+            $this->setProperty($data, 'depth');
+            $this->setProperty($data, 'consumeOnFull');
+            $this->setProperty($data, 'from');
+            $this->setProperty($data, 'into');
+            $this->setProperty($data, 'specialRecipe');
+            $this->setProperty($data, 'inStore');
+            $this->setProperty($data, 'hideFromAll');
+            $this->setProperty($data, 'stats');
+            $this->setProperty($data, 'tags');
+            $this->setProperty($data, 'effect');
 
 
-        if(property_exists($data, 'requiredChampion')){
-            $this->requiredChampion = Champions::getChampionByName($data->requiredChampion);
-        }
+            if (property_exists($data, 'requiredChampion')) {
+                $this->requiredChampion = Champions::getChampionByName($data->requiredChampion);
+            }
 
-        if(property_exists($data, 'requiredAlly')){
-            $this->requiredAlly = Champions::getChampionByName($data->requiredAlly);
-        }
+            if (property_exists($data, 'requiredAlly')) {
+                $this->requiredAlly = Champions::getChampionByName($data->requiredAlly);
+            }
 
-        if(property_exists($data, 'image')) {
-            $this->sprite = new Sprite($data->image->sprite, $data->image->group, $data->image->x, $data->image->y, $data->image->w, $data->image->h);
-            $this->image = $data->image->full;
-        }
+            if (property_exists($data, 'image')) {
+                $this->sprite = new Sprite($data->image->sprite, $data->image->group, $data->image->x, $data->image->y, $data->image->w, $data->image->h);
+                $this->image = $data->image->full;
+            }
 
-        $maps = array();
-        if(property_exists($data, 'maps')) {
-            foreach ($data->maps as $mapId => $isAvailable){
-                if($isAvailable){
-                    $maps[] = Maps::getMap($mapId);
+            $maps = array();
+            if (property_exists($data, 'maps')) {
+                foreach ($data->maps as $mapId => $isAvailable) {
+                    if ($isAvailable) {
+                        $maps[] = Maps::getMap($mapId);
+                    }
                 }
             }
+            $this->maps = $maps;
         }
-        $this->maps = $maps;
     }
 
     public function postItemsLoaded(){
@@ -437,3 +442,5 @@ class Item
         return $this->effect;
     }
 }
+
+Item::$DEFAULT_ITEM = new Item(0, null, true);
