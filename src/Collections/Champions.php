@@ -39,7 +39,9 @@ class Champions
      */
     public static function getChampionByName(string $name){
         foreach (self::$champions as $champion){
-            if(strtolower($champion->getName()) == strtolower($name)){
+            $championName = strtolower(preg_replace('/[^A-Za-z]/','', $champion->getName()));
+            $name = strtolower(preg_replace('/[^A-Za-z]/','', $name));
+            if($championName == $name){
                 return $champion;
             }
         }
