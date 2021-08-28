@@ -330,7 +330,7 @@ class Loader
             }
             $json = trim($json, ',');
             $json .= '],'.
-                '"lore":'.htmlspecialchars(json_encode($value->lore), ENT_QUOTES).','.
+                '"lore":'.json_encode($value->lore).','.
                 '"allyTips":[';
             foreach ($value->allytips as $allyTip){
                 $json .= '"'.$allyTip.'",';
