@@ -14,8 +14,6 @@ use Thresh_Core\Objects\Champions\Champion;
  */
 class Item
 {
-    public static $DEFAULT_ITEM;
-
     /**
      * @var int
      */
@@ -144,10 +142,10 @@ class Item
     /**
      * Item constructor.
      * @param int $id
-     * @param stdClass $data
+     * @param stdClass|null $data
      * @param bool $isDummy
      */
-    public function __construct(int $id, stdClass $data, bool $isDummy = false)
+    public function __construct(int $id, ?stdClass $data, bool $isDummy = false)
     {
         $this->id = $id;
         if(!$isDummy) {
@@ -442,5 +440,3 @@ class Item
         return $this->effect;
     }
 }
-
-Item::$DEFAULT_ITEM = new Item(0, null, true);

@@ -11,6 +11,8 @@ use Thresh_Core\Objects\Item;
  */
 class Items
 {
+    public static $DEFAULT_ITEM;
+
     /**
      * @var Item[]
      */
@@ -22,7 +24,7 @@ class Items
      * @param int $id Item ID
      * @return false|Item
      */
-    public static function getItem($id){
+    public static function getItem(int $id){
         foreach (self::$items as $item){
             if($item->getId() == $id){
                 return $item;
@@ -49,3 +51,5 @@ class Items
         self::$items = $items;
     }
 }
+
+Items::$DEFAULT_ITEM = new Item(0, null, true);
