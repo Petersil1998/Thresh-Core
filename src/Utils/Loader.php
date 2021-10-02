@@ -87,23 +87,6 @@ class Loader
         $fileHandler->close();
     }
 
-    private static function loadRunes(){
-        $runes = array();
-        $fileHandler = new FileHandler(self::RUNES_AND_RUNE_STYLES_FILE_PATH, 'r');
-        $json = json_decode($fileHandler->read());
-        $fileHandler->close();
-        foreach ($json as $runeStyle) {
-            foreach ($runeStyle->slots as $slot){
-                foreach ($slot->runes as $rune){
-                    $runes[] = new Rune($rune->id, $rune->key, $rune->icon, $rune->name, $rune->shortDesc, $rune->longDesc,
-                        RuneStyles::getRuneStyle(self::getRuneStyleIDByRuneID($rune->id))
-                    );
-                }
-            }
-        }
-        Runes::setRunes($runes);
-    }
-
     private static function loadRuneStyles(){
         $runeStyles = array();
         $fileHandler = new FileHandler(self::RUNES_AND_RUNE_STYLES_FILE_PATH, 'r');
@@ -113,6 +96,23 @@ class Loader
             $runeStyles[] = new RuneStyle($runeStyle->id, $runeStyle->key, $runeStyle->icon, $runeStyle->name);
         }
         RuneStyles::setRuneStyles($runeStyles);
+    }
+
+    private static function loadRunes(){
+        $runes = array();
+        $fileHandler = new FileHandler(self::RUNES_AND_RUNE_STYLES_FILE_PATH, 'r');
+        $json = json_decode($fileHandler->read());
+        $fileHandler->close();
+        foreach ($json as $runeStyle) {
+            foreach ($runeStyle->slots as $slot){
+                foreach ($slot->runes as $rune){
+                    $runes[] = new Rune($rune->id, $rune->key, $rune->icon, $rune->name, $rune->shortDesc, $rune->longDesc,
+                        RuneStyles::getRuneStyle($runeStyle->id)
+                    );
+                }
+            }
+        }
+        Runes::setRunes($runes);
     }
 
     private static function updateRuneStatsFile(){
@@ -391,26 +391,5 @@ class Loader
         $json .= ']';
         $fileHandler->write($json);
         $fileHandler->close();
-    }
-
-    /**
-     * @param int $id
-     * @return int
-     */
-    private static function getRuneStyleIDByRuneID(int $id): int
-    {
-        $fileHandler = new FileHandler(self::RUNES_AND_RUNE_STYLES_FILE_PATH, 'r');
-        $json = json_decode($fileHandler->read());
-        $fileHandler->close();
-        foreach ($json as $runeStyle){
-            foreach ($runeStyle->slots as $slot){
-                foreach ($slot->runes as $rune) {
-                    if ($rune->id === $id) {
-                        return $runeStyle->id;
-                    }
-                }
-            }
-        }
-        throw new RuntimeException('Error when trying to initialize Runes: Could not find RuneStyle for Rune '.$id.'.');
     }
 }
